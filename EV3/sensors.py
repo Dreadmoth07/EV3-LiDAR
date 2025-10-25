@@ -51,6 +51,7 @@ def main():
         point = calculatePoint(1,270)
         print(point)
         sleep(0.5)
+        print("",end="")
     return 0
 
 
