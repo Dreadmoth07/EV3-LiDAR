@@ -24,6 +24,15 @@ def splitLayers(filePath):
             layer.append(v)
     return layers
 
+def createReferences(grid):
+    references = {}
+    refNum = 1
+    for layer in grid:
+        for vertex in layer:
+           references[vertex] = refNum
+           refNum += 1
+    return references
+
 def getIntsFromString(string):
     ints = []
     temp = ""
@@ -35,15 +44,65 @@ def getIntsFromString(string):
             temp += char
     return ints
 
-def formatFile(inFilePath,outFilePath):
-    vGrid = splitLayers(inFilePath)
+def addVertices(grid):
     content = []
     # Outputting Vertices
-    for layer in vGrid:
+    for layer in grid:
         for vertex in layer:
             v = vertex.getInfo()
             content.append(f"v {v[0]} {v[1]} {v[2]}\n")
-    fo.writeFile(outFilePath, content)
+    return content
+
+def addFaces(grid, refTable):
+    maxLayers = len(grid) - 1
+    faces = []
+    # The hard part™
+    # Assuming same number of vertices in each layer.
+    verticesPerLayer = len(grid[0])
+
+    for layer in range(0,maxLayers):
+        for vertex in range(0,verticesPerLayer):
+            v0 = grid[layer][vertex]
+            v1 = grid[layer+1][vertex]
+            vplus = vertex + 1
+            if vplus == verticesPerLayer:
+                vplus = 0
+            v2 = grid[layer][vplus]
+
+
+            r0 = refTable[v0]
+            r1 = refTable[v1]
+            r2 = refTable[v2]
+            face = f"f {r0} {r1} {r2}\n"
+            faces.append(face)
+    
+    face = "f "
+    for vertex in grid[0]:
+        face += f"{refTable[vertex]} "
+
+    face += "\n"
+    faces.append(face)
+    return faces
+    
+
+
+def formatFile(inFilePath,outFilePath):
+    vGrid = splitLayers(inFilePath)
+    refTable = createReferences(vGrid)
+
+    content = addVertices(vGrid)
+    fo.writeFile(outFilePath, "# Vertices\n")
+    fo.appendFile(outFilePath, content)
+
+    content = addFaces(vGrid, refTable)
+    fo.appendFile(outFilePath, "# Faces\n")
+    fo.appendFile(outFilePath, content)
 
 if __name__ == "__main__":
-    formatFile("Data-Rep/Test.txt", "Output.obj")
+    inFilePath = input("Enter the input file path: ")
+    outFilePath = input("Enter the output file name: ") 
+    #try:
+    formatFile(inFilePath, outFilePath)
+    print("File Created!")
+    #except:
+    #print("An Error Occurred")

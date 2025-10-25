@@ -13,7 +13,7 @@ def writeFile(filePath, content):
     file.writelines(content)
 
 def appendFile(filePath,content):
-    file = open(filePath, "a+")
+    file = open(filePath, "a")
     file.writelines(content)
 
 if __name__ == "__main__":
