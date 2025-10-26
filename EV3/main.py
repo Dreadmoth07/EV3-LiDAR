@@ -16,16 +16,20 @@ def main():
     for i in range(7):
         listToWrite = ""
         allEmpty = True
-        for j in range(360):
+        for j in range(72):
             currentPoint = sensors.calculatePoint(0.8*i, j) #each elevation is on average 0.8cm
             if (not(currentPoint[0] == currentPoint[2] and currentPoint[0] == 0)): # is it not an empty point
                 allEmpty = False
-            for number in currentPoint:
-                number = round(number,3)
-                listToWrite+= str(number) + " "
+            for k in range(3):
+                number = round(currentPoint[k],3)
+                if k == 2:
+                    listToWrite+= str(number)
+                else:
+                    listToWrite+= str(number) + " "
+            
             listToWrite+="\n"
             motors.spinTableSpinIncrement()
-            motors.debug_print("Table moved by 1 degree for the", j, "th time on cycle", i)
+            motors.debug_print("Table moved by 5 degrees for the", j, "th time on cycle", i)
         if(not(allEmpty)):
             file.write(listToWrite)
             file.write("\n")

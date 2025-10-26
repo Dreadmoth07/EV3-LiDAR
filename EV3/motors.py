@@ -19,8 +19,8 @@ def debug_print(*args, **kwargs):
 def spinTableSpinIncrement():
     spinTable = LargeMotor(OUTPUT_A)
     spinTable.wait_until_not_moving()
-    spinTable.on_for_degrees(SpeedPercent(1), 1)
-    #debug_print("spin table turned by 1 degrees")
+    spinTable.on_for_degrees(SpeedPercent(1), 5)
+    #debug_print("spin table turned by 5 degrees")
 
 def pivotMoveUpIncrement():
     upPivot = LargeMotor(OUTPUT_B)
