@@ -122,7 +122,7 @@ def formatFile(inFilePath,outFilePath):
     fo.appendFile(outFilePath, content)
 
 if __name__ == "__main__":
-    inFilePath = input("Enter the input file path: ").strip()
+    inFilePath = "EV3/test.txt"#  input("Enter the input file path: ").strip()
     outFilePath = input("Enter the output file name: ") .strip()
     formatFile(inFilePath, outFilePath)
     print("File Created!")
