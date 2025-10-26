@@ -19,7 +19,8 @@ def debug_print(*args, **kwargs):
 def spinTableSpinIncrement(spinTable, upPivot):
     upPivot.wait_until_not_moving()
     spinTable.wait_until_not_moving()
-    spinTable.on_for_degrees(SpeedPercent(1), 81) # 45 degrees with gear ratio of x1.8
+    spinTable.on_for_degrees(SpeedPercent(10), 81) # 45 degrees with gear ratio of x1.8
+    spinTable.wait_until_not_moving()
     #debug_print("spin table turned by 5 degrees")
 
 def pivotMoveUpIncrement(spinTable, upPivot):
@@ -28,6 +29,7 @@ def pivotMoveUpIncrement(spinTable, upPivot):
     spinTable.wait_until_not_moving()
     upPivot.polarity = "normal"
     upPivot.on_for_seconds(SpeedPercent(2), 1)
+    upPivot.wait_until_not_moving()
     #upPivot.polarity = "normal"
     debug_print("pivot moved up by 1 increment")
     sleep(5)
@@ -37,6 +39,7 @@ def pivotMoveDownIncrement(spinTable, upPivot):
     spinTable.wait_until_not_moving()
     upPivot.polarity = "inversed"
     upPivot.on_for_seconds(SpeedPercent(2), 1)
+    upPivot.wait_until_not_moving()
     #upPivot.polarity = "inversed"
     debug_print("pivot moved down by 1 increment")
     sleep(1.5)
@@ -46,6 +49,7 @@ def continuousMoveDown(spinTable, upPivot):
     spinTable.wait_until_not_moving()
     upPivot.polarity = "inversed"
     upPivot.on_for_seconds(SpeedPercent(2),10)
+    upPivot.wait_until_not_moving()
     debug_print("pivot moved down continuously for 10 seconds")
     sleep(1.5)
 
@@ -54,6 +58,7 @@ def continuousMoveUp(spinTable, upPivot):
     spinTable.wait_until_not_moving()
     upPivot.polarity = "normal"
     upPivot.on_for_seconds(SpeedPercent(2),5)
+    upPivot.wait_until_not_moving()
     debug_print("pivot moved up continuously for 10 seconds")
     sleep(1)
 
