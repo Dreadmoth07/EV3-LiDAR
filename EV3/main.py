@@ -21,6 +21,7 @@ def main():
             if (not(currentPoint[0] == currentPoint[2] and currentPoint[0] == 0)): # is it not an empty point
                 allEmpty = False
             for number in currentPoint:
+                number = round(number,3)
                 listToWrite+= str(number) + " "
             listToWrite+="\n"
             motors.spinTableSpinIncrement()
