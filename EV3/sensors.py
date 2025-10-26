@@ -22,7 +22,7 @@ def calculatePoint(elevation, rotation):
 
 def getDistance():
     d = 0
-    d = 100 - IR.proximity
+    d = 16 - IR.proximity
     #print("Distance", d)
     return d    
 

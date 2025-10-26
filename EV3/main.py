@@ -17,7 +17,7 @@ def main():
         listToWrite = ""
         allEmpty = True
         for j in range(72):
-            currentPoint = sensors.calculatePoint(0.8*i, j) #each elevation is on average 0.8cm
+            currentPoint = sensors.calculatePoint(0.8*i, j*5) #each elevation is on average 0.8cm
             if (not(currentPoint[0] == currentPoint[2] and currentPoint[0] == 0)): # is it not an empty point
                 allEmpty = False
             for k in range(3):
