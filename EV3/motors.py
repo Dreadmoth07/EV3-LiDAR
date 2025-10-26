@@ -19,7 +19,7 @@ def debug_print(*args, **kwargs):
 def spinTableSpinIncrement(spinTable, upPivot):
     upPivot.wait_until_not_moving()
     spinTable.wait_until_not_moving()
-    spinTable.on_for_degrees(SpeedPercent(5), 36) # 20 degrees with gear ratio of x1.8
+    spinTable.on_for_degrees(SpeedPercent(5), 18) # 10 degrees with gear ratio of x1.8
     spinTable.wait_until_not_moving()
     #debug_print("spin table turned by 5 degrees")
 
