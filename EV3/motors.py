@@ -16,13 +16,13 @@ def debug_print(*args, **kwargs):
     '''
     print(*args, **kwargs, file=sys.stderr)
 
-def spinTableSpinIncrement():
+def spinTableSpinIncrement(spinTable, upPivot):
     spinTable = LargeMotor(OUTPUT_A)
     spinTable.wait_until_not_moving()
     spinTable.on_for_degrees(SpeedPercent(1), 9) # 5 degrees with gear ratios
     #debug_print("spin table turned by 5 degrees")
 
-def pivotMoveUpIncrement():
+def pivotMoveUpIncrement(spinTable, upPivot):
     upPivot = LargeMotor(OUTPUT_B)
     upPivot.wait_until_not_moving()
     upPivot.polarity = "normal"
@@ -31,7 +31,7 @@ def pivotMoveUpIncrement():
     debug_print("pivot moved up by 1 increment")
     sleep(5)
     
-def pivotMoveDownIncrement():
+def pivotMoveDownIncrement(spinTable, upPivot):
     upPivot = LargeMotor(OUTPUT_B)
     upPivot.wait_until_not_moving()
     upPivot.polarity = "inversed"
@@ -40,7 +40,7 @@ def pivotMoveDownIncrement():
     debug_print("pivot moved down by 1 increment")
     sleep(1.5)
 
-def continuousMoveDown():
+def continuousMoveDown(spinTable, upPivot):
     upPivot = LargeMotor(OUTPUT_B)
     upPivot.wait_until_not_moving()
     upPivot.polarity = "inversed"
@@ -48,7 +48,7 @@ def continuousMoveDown():
     debug_print("pivot moved down continuously for 10 seconds")
     sleep(1.5)
 
-def continuousMoveUp():
+def continuousMoveUp(spinTable, upPivot):
     upPivot = LargeMotor(OUTPUT_B)
     upPivot.wait_until_not_moving()
     upPivot.polarity = "normal"
