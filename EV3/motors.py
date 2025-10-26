@@ -19,34 +19,34 @@ def debug_print(*args, **kwargs):
 def spinTableSpinIncrement():
     spinTable = LargeMotor(OUTPUT_A)
     spinTable.wait_until_not_moving()
-    spinTable.on_for_degrees(SpeedPercent(1), 360)
-    debug_print("spin table turned by 360 degrees")
+    spinTable.on_for_degrees(SpeedPercent(1), 1)
+    #debug_print("spin table turned by 1 degrees")
 
-def pivotMoveUpIncrement(distanceFromBase):
+def pivotMoveUpIncrement():
     upPivot = LargeMotor(OUTPUT_B)
     upPivot.wait_until_not_moving()
     upPivot.polarity = "normal"
     upPivot.on_for_seconds(SpeedPercent(2), 1)
     #upPivot.polarity = "normal"
     debug_print("pivot moved up by 1 increment")
-    sleep(1)
+    sleep(5)
     
-def pivotMoveDownIncrement(distanceFromBase):
+def pivotMoveDownIncrement():
     upPivot = LargeMotor(OUTPUT_B)
     upPivot.wait_until_not_moving()
     upPivot.polarity = "inversed"
     upPivot.on_for_seconds(SpeedPercent(2), 1)
     #upPivot.polarity = "inversed"
     debug_print("pivot moved down by 1 increment")
-    sleep(1)
+    sleep(1.5)
 
 def continuousMoveDown():
     upPivot = LargeMotor(OUTPUT_B)
     upPivot.wait_until_not_moving()
     upPivot.polarity = "inversed"
-    upPivot.on_for_seconds(SpeedPercent(2),5)
+    upPivot.on_for_seconds(SpeedPercent(2),10)
     debug_print("pivot moved down continuously for 10 seconds")
-    sleep(1)
+    sleep(1.5)
 
 def continuousMoveUp():
     upPivot = LargeMotor(OUTPUT_B)
@@ -57,14 +57,9 @@ def continuousMoveUp():
     sleep(1)
 
 def main():
-    #for i in range(10):
-    #    pivotMoveUpIncrement(0)
-    #for i in range(10):
-    #    pivotMoveDownIncrement(0)
-    #for i in range(20):
-    spinTableSpinIncrement()
-    #continuousMoveUp()
-    #continuousMoveDown()
+    for i in range(10):
+        pivotMoveUpIncrement(0)
+    
     debug_print("program finished")
     return 0
     

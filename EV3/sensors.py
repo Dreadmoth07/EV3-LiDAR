@@ -43,6 +43,8 @@ def rotatePoint(point, degrees):
         point[0] = 0
     #print(point[2])
     #sleep(2)
+    point[0] *= 0.7
+    point[2] *= 0.7
     return point
     
 def main():
