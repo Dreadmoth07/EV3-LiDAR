@@ -23,6 +23,8 @@ def calculatePoint(elevation, rotation):
 def getDistance():
     d = 0
     d = 16 - IR.proximity
+    if(abs(d) == 84): # reset overflow when distance misrepresented as too large
+        d = 0
     #print("Distance", d)
     return d    
 
