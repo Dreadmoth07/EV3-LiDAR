@@ -13,6 +13,8 @@ import sensors
 
 def main():
     file = open("test.txt", "w")
+    spinTable = LargeMotor(OUTPUT_A)
+    upPivot = LargeMotor(OUTPUT_B)
     for i in range(7):
         listToWrite = ""
         allEmpty = True
@@ -28,15 +30,15 @@ def main():
                     listToWrite+= str(number) + " "
             
             listToWrite+="\n"
-            motors.spinTableSpinIncrement()
+            motors.spinTableSpinIncrement(spinTable, upPivot)
             motors.debug_print("Table moved by 5 degrees for the", j, "th time on cycle", i)
         if(not(allEmpty)):
             file.write(listToWrite)
             file.write("\n")
             
-        motors.pivotMoveUpIncrement()
+        motors.pivotMoveUpIncrement(spinTable, upPivot)
 
-    motors.continuousMoveDown()
+    motors.continuousMoveDown(spinTable, upPivot)
 
 
     file.close()
