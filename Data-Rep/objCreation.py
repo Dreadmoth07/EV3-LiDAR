@@ -38,7 +38,7 @@ def getIntsFromString(string):
     temp = ""
     for char in string:
         if char == " " or char == "\n":
-            ints.append(int(temp))
+            ints.append(float(temp))
             temp = ""
         else:
             temp += char
@@ -79,13 +79,11 @@ def addFaces(grid, refTable):
         
     for layer in range(1,maxLayers+1):
         # 2nd set - going down
-        print(layer)
         for vertex in range(0,verticesPerLayer):
             v0 = grid[layer][vertex]
             lminus = layer-1
             if lminus == -1:
                 lminus = maxLayers
-            print(lminus)
             v1 = grid[lminus][vertex]
             v2 = grid[layer][vertex-1]
 
