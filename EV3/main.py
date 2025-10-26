@@ -18,8 +18,9 @@ def main():
     for i in range(7):
         listToWrite = ""
         allEmpty = True
-        for j in range(72):
-            currentPoint = sensors.calculatePoint(0.8*i, j*5) #each elevation is on average 0.8cm
+        for j in range(8):
+            spinTable.wait_until_not_moving()
+            currentPoint = sensors.calculatePoint(0.8*i, j*45) #each elevation is on average 0.8cm
             if (not(currentPoint[0] == currentPoint[2] and currentPoint[0] == 0)): # is it not an empty point
                 allEmpty = False
             for k in range(3):
